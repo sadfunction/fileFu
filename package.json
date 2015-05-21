@@ -1,0 +1,24 @@
+{
+  "name": "fileFu",
+  "version": "0.0.1",
+  "description": "Allow registered users to upload files and to download files from a centralized server.\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dragonegger2/fileFu"
+  },
+  "keywords": [
+    "node",
+    "kungfu",
+    "file"
+  ],
+  "author": "Trent Lennon",
+  "license": "GNU",
+  "bugs": {
+    "url": "https://github.com/Dragonegger2/fileFu/issues"
+  },
+  "homepage": "https://github.com/Dragonegger2/fileFu"
+}
