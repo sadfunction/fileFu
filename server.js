@@ -8,7 +8,9 @@ var express = require('express'); // call express
 var app = express(); // define our app using express
 var bodyParser = require('body-parser');
 var path = require('path');
-var ftp = require('./app/ftp');
+var ftp = require('./app/ftp'),
+    multer = require('multer'),
+    fs = require('fs');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -16,6 +18,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+app.use(multer({ dest: './uploads/'}))
 
 var port = process.env.PORT || 8080; // set our port
 
@@ -40,7 +43,19 @@ router.get('/', function(req, res) {
 
 // route to upload to server.
 router.post('/upload', function(req, res) {
-    res.send("Trying to upload.");
+    var path = require('path'); // add path module
+
+    fs.readFile(req.files.image.path, function(err, data) { // readfilr from the given path
+        var dirname = path.resolve(".") + '/uploads/'; // path.resolve(“.”) get application directory path
+        var newPath = dirname + req.files.image.originalFilename; // add the file name
+        fs.writeFile(newPath, data, function(err) { // write file in uploads folder
+            if (err) {
+                res.json("Failed to upload your file");
+            } else {
+                res.json("Successfully uploaded your file");
+            }
+        });
+    });
 });
 
 // more routes for our API will happen here
