@@ -1,0 +1,17 @@
+block content
+  h1= title
+  p Welcome to #{title}
+  form(method="post", action="/api/upload", enctype='multipart/form-data')
+   input(type="file", name="image", id="image")
+   input(type="submit", value="Upload", class="button-style")
+   br
+   span#message
+  br
+  br
+  br
+  div#download
+   table
+    thead
+     th File Name
+     th Download
+    tbody

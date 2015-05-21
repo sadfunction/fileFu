@@ -1,0 +1,13 @@
+h1 {
+    font-family: "Monotype Corsiva";
+    color: Black;
+}
+
+.button-style {
+    color: rgb(245, 245, 245);
+    background-color: rgb(34, 80, 226);
+    height: 45px;
+    width: 130px;
+    border-radius: 5px;
+    font-weight: bold;
+}
