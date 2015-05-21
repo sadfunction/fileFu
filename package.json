@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/Dragonegger2/fileFu/issues"
   },
-  "homepage": "https://github.com/Dragonegger2/fileFu"
+  "homepage": "https://github.com/Dragonegger2/fileFu",
+  "dependencies": {
+    "ftp": "~0.3.10"
+  }
 }
