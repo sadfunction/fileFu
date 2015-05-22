@@ -1,7 +1,7 @@
 {
   "name": "fileFu",
   "version": "0.0.1",
-  "description": "Allow registered users to upload files and to download files from a centralized server.\"",
+  "description": "Allow registered users to upload files and to download files from a centralized server.",
   "main": "server.js",
   "scripts": {
     "test": "test"
@@ -20,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/Dragonegger2/fileFu/issues"
   },
-  "homepage": "https://github.com/Dragonegger2/fileFu"
+  "homepage": "https://github.com/Dragonegger2/fileFu",
+  "dependencies": {
+    "ftp": "~0.3.10",
+    "express": "~4.12.4",
+    "body-parser": "~1.12.4",
+    "jade": "~1.9.2",
+    "multer": "~0.1.8"
+  }
 }
