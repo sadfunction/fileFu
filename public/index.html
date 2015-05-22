@@ -1,0 +1,40 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fileFU  |  HOME</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <script src="js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+    
+    <div class="row" style="padding-top:20px;">
+      <div class ="medium-6 medium-centered columns"><p><h1 style="text-align:center;">fileFU</h1></div>
+    </div>
+
+    <div class="row" style="padding-top:5">
+      <div class ="medium-6 medium-centered columns"><p style="text-align:center;">fileFU is a simple file server brought to you by Dragonegger2.</div>
+    </div>
+    
+    <form method="post" action="/api/upload", enctype="multipart/form-data" style="padding-top:10">
+      <div class="row">
+        <div class ="medium-4 medium-centered columns">          
+          <input type="file" name="image">
+        </div>
+        <div class ="medium-2 medium-centered columns">
+          <input type="submit" value="Upload" class="button radius">
+        </div>
+      </div>
+    </form>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="/javascript/global.js"></script>
+
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
