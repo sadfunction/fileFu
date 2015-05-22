@@ -61,7 +61,7 @@ router.post('/upload', function(req, res) {
     });
 });
 
-router.get('/download', function(req, res) { // create download route
+router.get('/download', function(req, res) {
     var path = require('path'); // get path
     var dir = path.resolve(".") + '/uploads/'; // give path
     fs.readdir(dir, function(err, list) { // read directory return  error or list
@@ -75,16 +75,15 @@ router.get('/uploads/:file', function (req, res){
   var path=require('path');
     file = req.params.file;
     var dirname = path.resolve(".")+'\\uploads\\';
-    console.log("Dirname: " + dirname);
     var img = fs.readFileSync(dirname  + file);
-    res.writeHead(200, {'Content-Type': 'image/jpg' });
+    res.contentType(file);
     res.end(img, 'binary');
 });
 
 router.get('/:file(*)', function(req, res, next) { // this routes all types of file
     var path = require('path');
     var file = req.params.file;
-    var path = path.resolve(".") + 'api/uploads/' + file;
+    var path = path.resolve(".") + '/uploads/' + file;
     res.download(path); // magic of download fuction
 });
 

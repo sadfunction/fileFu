@@ -1,7 +1,7 @@
 {
   "name": "fileFu",
   "version": "0.0.1",
-  "description": "Allow registered users to upload files and to download files from a centralized server.\"",
+  "description": "Allow registered users to upload files and to download files from a centralized server.",
   "main": "server.js",
   "scripts": {
     "test": "test"
