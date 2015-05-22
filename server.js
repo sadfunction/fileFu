@@ -18,13 +18,15 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-app.use(multer({ dest: './uploads/'}))
+app.use(multer({
+    dest: './uploads/'
+}))
 
 var port = process.env.PORT || 8080; // set our port
 
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', __dirname + '/views')
 app.set('view engine', 'jade');
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'))
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -38,7 +40,7 @@ app.get('/', function(req, res) {
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
-    res.send("Hello World.");
+    res.send("ALIVE.");
 });
 
 // route to upload to server.
@@ -50,18 +52,36 @@ router.post('/upload', function(req, res) {
         var newPath = dirname + req.files.image.originalFilename; // add the file name
         fs.writeFile(newPath, data, function(err) { // write file in uploads folder
             if (err) {
-                res.json("Failed to upload your file");
+                res.send("Failed to upload your file");
             } else {
-                res.json("Successfully uploaded your file");
+                res.send("Successfully uploaded your file");
             }
         });
     });
 });
 
-// more routes for our API will happen here
-router.get('/get', function(req, res) {
-    console.log("Retrieving file.");
-    res.send(ftp.download("test.txt"));
+router.get('/download', function(req, res) { // create download route
+    var path = require('path'); // get path
+    var dir = path.resolve(".") + '/uploads/'; // give path
+    fs.readdir(dir, function(err, list) { // read directory return  error or list
+        if (err) return res.json(err);
+        else
+            res.json(list);
+    });
+});
+router.get('/uploads/:file', function (req, res){
+  var path=require('path');
+    file = req.params.file;
+    var dirname = path.resolve(".")+'/uploads/';
+    var img = fs.readFileSync(dirname  + file);
+    res.writeHead(200, {'Content-Type': 'image/jpg' });
+    res.end(img, 'binary');
+});
+router.get('/:file(*)', function(req, res, next) { // this routes all types of file
+    var path = require('path');
+    var file = req.params.file;
+    var path = path.resolve(".") + '/uploads/' + file;
+    res.download(path); // magic of download fuction
 });
 
 // REGISTER OUR ROUTES -------------------------------
