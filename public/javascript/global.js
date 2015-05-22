@@ -11,7 +11,7 @@ function populateTable() {
         for (var item in data) { // one by one get and add fortable
             tableContent += '<tr>';
             tableContent += '<td>' + data[item] + '</td>'; // this file name column
-            tableContent += '<td><a href=' + "/api/" + data[item] + '>' + data[item] + '</a></td>'; // this was the link column
+            tableContent += '<td><a href=' + "/api/" + data[item] + '>' + "Download" + '</a></td>'; // this was the link column
         }
         // this all added into the tableContent variable
         $('#download table tbody').html(tableContent); // add into the table
