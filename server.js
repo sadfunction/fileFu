@@ -61,10 +61,9 @@ router.post('/upload', function(req, res) {
     fs.readFile(req.files.image.path, function(err, data) { // readfilr from the given path
         var dirname = path.resolve(".") + '/uploads/'; // path.resolve(“.”) get application directory path
         var newPath = dirname + req.files.image.originalFilename; // add the file name
-        console.log("Original FileName: " + req.files.keys);
         fs.writeFile(newPath, data, function(err) { // write file in uploads folder
             if (err) {
-                res.send("Failed to upload your file");
+                document.get
             } else {
                 res.send("Successfully uploaded your file");
             }
