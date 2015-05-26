@@ -3,7 +3,7 @@ block content
   h1="Node Simple Server"
   p Welcome to the simple file server.
   //- #{title}
-  form(method="post", action="/api/upload", enctype='multipart/form-data')
+  form(method="post", action="/api/upload", enctype='multipart/form-data', id="form")
    input(type="file", name="image")
    input(type="submit", value="Upload", class="button-style")
    br
