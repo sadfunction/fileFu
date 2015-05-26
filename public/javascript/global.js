@@ -17,3 +17,21 @@ function populateTable() {
         $('#download table tbody').html(tableContent); // add into the table
     });
 };
+
+$("form")
+    .submit(function(e) {
+        $.ajax( {
+            url: '/api/upload',
+            type: 'POST',
+            data: new FormData( this ),
+            processData: false,
+            contentType: false
+        } )
+        .done(function(serverResponse) {
+            alert("Server Response " + serverResponse);
+        })
+        .fail(function(error) {
+            alert(error);
+        });
+    e.preventDefault();
+});
