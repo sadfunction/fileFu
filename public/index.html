@@ -1,40 +1,91 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>fileFU  |  HOME</title>
-    <link rel="stylesheet" href="css/foundation.css" />
-    <script src="js/vendor/modernizr.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css" />
   </head>
   <body>
     
-    <div class="row" style="padding-top:20px;">
-      <div class ="medium-6 medium-centered columns"><p><h1 style="text-align:center;">fileFU</h1></div>
-    </div>
-
-    <div class="row" style="padding-top:5">
-      <div class ="medium-6 medium-centered columns"><p style="text-align:center;">fileFU is a simple file server brought to you by Dragonegger2.</div>
-    </div>
-    
-    <form method="post" action="/api/upload", enctype="multipart/form-data" style="padding-top:10">
+    <div class="container">
       <div class="row">
-        <div class ="medium-4 medium-centered columns">          
-          <input type="file" name="image">
-        </div>
-        <div class ="medium-2 medium-centered columns">
-          <input type="submit" value="Upload" class="button radius">
+        <div class ="col-md-6"><p><h1 class="text-center">fileFU</h1></div>
+      </div>
+
+      <div class="row">
+        <div class ="col-md-6"><p class="text-center">fileFU is a simple file server brought to you by Dragonegger2.</div>
+      </div>
+
+        <form method="post" action="/api/upload", enctype="multipart/form-data" style="padding-top:10">
+          <div class="row text-center">
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-btn">
+                    <span class="btn btn-primary btn-file">
+                        Browse&hellip; <input type="file" multiple name="image">
+                    </span>
+                  </span>
+                <input type="text" class="form-control" readonly>
+              </div>
+            </div>
+          </div>
+          <div class="row text-center" style="padding-top:10px;">
+            <div class ="col-md-6">
+              <button type="submit" class="btn btn-primary">
+                Upload
+              </button>
+            </div>
+          </div>
+        </form>
+      <div class="row">
+        <div id="download" class="col-md-6">
+          <table class ="table">
+            <thead>
+            <th>File Name</th>
+            <th>Download</th>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
         </div>
       </div>
-    </form>
+      </div>
 
     <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="js/vendor/modernizr.js"></script>
     <script src="/javascript/global.js"></script>
 
+    <!-- The script below runs on document ready -->
     <script>
-      $(document).foundation();
+      $(document).ready(function(){
+        populateTable();
+      });
+    </script>
+
+    <!-- The script below updates the file input once a file is selected -->
+    <script>
+      $(document).on('change', '.btn-file :file', function() {
+        var input = $(this),
+        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [numFiles, label]);
+                });
+      $(document).ready( function() {
+        $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+
+        var input = $(this).parents('.input-group').find(':text'),
+            log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+        if( input.length ) {
+            input.val(log);
+        } else {
+            if( log ) alert(log);
+        }
+
+        });
+    });
     </script>
   </body>
 </html>

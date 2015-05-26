@@ -2,6 +2,7 @@
 $(document).ready(function() {
     populateTable(); // populateTable function
 });
+
 // Add a function show files with in the table
 function populateTable() {
     // Empty content string
