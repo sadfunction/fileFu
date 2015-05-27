@@ -54,7 +54,6 @@ $("form")
             //returns a placeholder for div-id #success
             //re-draws the table with new file
             .done(function(serverResponse) {
-                alert("Finished!");
                 $('#success').html('<div class="row remove fade in" id="success" role="alert"><div class="col-md-6 alert alert-success">Your file has been successfully uploaded.</div></div>');
                 window.setTimeout(fadeOut($('.remove'), 6000));
                 populateTable();
