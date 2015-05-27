@@ -24,9 +24,12 @@ input[readonly] {
 }
 
 tr:nth-child(even) {
-    background: #CCC;
+    background: #906828;
+    color: #fff;
 }
-
+tr:nth-child(even) a {
+    color: #fff;
+}
 tr:nth-child(odd) {
     background: #FFF;
 }
