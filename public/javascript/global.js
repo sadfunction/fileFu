@@ -10,6 +10,7 @@ $(document).on('change', '.btn-file :file', function() {
     label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
         input.trigger('fileselect', [numFiles, label]);
             });
+
   $(document).ready( function() {
     $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
 
@@ -34,7 +35,7 @@ function populateTable() {
         for (var item in data) { // one by one get and add fortable
             tableContent += '<tr>';
             tableContent += '<td>' + data[item] + '</td>'; // this file name column
-            tableContent += '<td><a href=' + "/api/" + data[item] + '>' + "Download" + '</a></td>'; // this was the link column
+            tableContent += '<td><a href=\"' + '/api/' + data[item] + '\">' + "Download" + '</a></td>'; // this was the link column
         }
         // this all added into the tableContent variable
         $('#download table tbody').html(tableContent); // add into the table
