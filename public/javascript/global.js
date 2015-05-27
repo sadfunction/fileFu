@@ -72,5 +72,5 @@ $("form").submit(function(e) {
 function displayMessage(message, level) {
     $('#message')
         .html('<div class="row remove fade in" role="alert"><div class="col-md-6 alert alert-'+level+'">' + message + '</div></div>')
-        .fadeOut(6000);
+        .fadeOut(3000);
 }

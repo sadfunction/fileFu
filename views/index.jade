@@ -7,24 +7,26 @@ block content
                     h1.text-center fileFU
             .row
                 .col-md-6
-                    p.text-center fileFU is a simple file server brought to you by Dragonegger2.
-            #message
-            form(name='uploadFile' method='post', action='/api/upload', enctype='multipart/form-data', style='padding-top:10')
-                .row.text-center
-                    .col-md-6
-                        .input-group
-                            span.input-group-btn
-                                span.btn.btn-primary.btn-file
-                                    | Browse...
-                                    input(type='file', multiple='', name='image' class='fileUpload')
-                            input.form-control(type='text', readonly='')
-                .row.text-center(style='padding-top:10px;')
-                    .col-md-6
-                        button.btn.btn-primary(type='submit') Upload
-            .row
-                #download.col-md-6
-                    table.table
-                        thead
-                            th File Name
-                            th Download
-                        tbody
+                    p.text-center fileFU is brought to you by Dragonegger2.
+            section#login
+                .container
+                    .row
+                      .col-md-6
+                        .form-wrap
+                          h1(class='text-center') Please log in
+                          form#login-form(role='form', action='#', method='post', autocomplete='off')
+                            .form-group
+                              label.sr-only(for='email') Email
+                              input#email.form-control(type='email', name='email', placeholder='Username')
+                            .form-group
+                              label.sr-only(for='key') Password
+                              input#key.form-control(type='password', name='key', placeholder='Password')
+                            .checkbox
+                              span.character-checkbox(onclick='showPassword()')
+                              span.label Show password
+                            //uncomment the line below to add in the correct form button
+                            //input#btn-login.btn.btn-primary.btn-lg.btn-block(type='submit', value='Log in')
+
+                            //button below is a temporary link to the table page
+                            a(href='/landing')#btn-login.btn.btn-primary.btn-lg.btn-block Log In
+                          hr

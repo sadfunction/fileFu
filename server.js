@@ -28,9 +28,16 @@ app.use(express.static(__dirname + '/public'))
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jade');
 
+
+//rendering routes
 app.get('/', function(req, res) {
 	res.render('index', {
 		title: 'Home'
+	})
+})
+app.get('/landing', function(req, res) {
+	res.render('landing', {
+		title: 'Welcome'
 	})
 })
 
