@@ -24,7 +24,7 @@ input[readonly] {
 }
 
 tr:nth-child(even) {
-    background: #906828;
+    background: #539DDC;
     color: #fff;
 }
 tr:nth-child(even) a {
