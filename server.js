@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(multer({
 	dest: './uploads/',
 	rename: function(fieldname, filename) {
-		return filename + Date.now();
+		return filename;
 	},
 	onFileUploadStart: function(file) {
 		console.log(file.originalname + ' is starting ...')
@@ -37,19 +37,14 @@ app.get('/', function(req, res) {
 router.post('/upload', function(req, res) {
 	fs.readFile(req.files.image.path, function(err, data) {
 		var dirname = path.resolve(".") + '/uploads/',
-			newPath = dirname + req.files.image.originalFilename;
-
-		if (err) {
-			res.send("Error " + err);
-		} else {
-			fs.writeFile(newPath, data, function(err) {
-				if (err) {
-					document.get // eh?
-				} else {
-					res.send("Successfully uploaded your file");
-				}
-			});
-		}
+			newPath = dirname
+		fs.writeFile(newPath, data, function(err) {
+			if (err) {
+				res.send("Error " + err);
+			} else {
+				res.send("Successfully uploaded your file");
+			}
+		});
 	});
 });
 
