@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use(multer({
     dest: './uploads/',
     rename: function(fieldname, filename) {
-        return filename + Date.now();
+        return filename;
     },
     onFileUploadStart: function(file) {
         console.log(file.originalname + ' is starting ...')
@@ -59,10 +59,10 @@ router.post('/upload', function(req, res) {
 
     fs.readFile(req.files.image.path, function(err, data) { // readfilr from the given path
         var dirname = path.resolve(".") + '/uploads/'; // path.resolve(“.”) get application directory path
-        var newPath = dirname + req.files.image.originalFilename; // add the file name
+        var newPath = dirname ;//+ req.files.image.originalFilename; // add the file name
         fs.writeFile(newPath, data, function(err) { // write file in uploads folder
             if (err) {
-                document.get
+                res.send("Error " + err);
             } else {
                 res.send("Successfully uploaded your file");
             }
