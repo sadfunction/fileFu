@@ -41,12 +41,12 @@ function populateTable() {
     });
 };
 
-$("form")
-    .submit(function(e) {
-        var path = document.forms['uploadFile'];
-        console.log(JSON.stringify(path));
-        if (path === undefined) {
-            displayError("Please select a file.");
+$("form").submit(function(e) {
+        e.preventDefault();
+        var path = $(".fileUpload")[0].files;
+        console.log(path);
+        if (path.length < 1) {
+            displayMessage("Please select a file.", 'danger');
         } else {
 
             $.ajax({
@@ -67,7 +67,6 @@ $("form")
                     displayMessage('An error occurred while uploading your file.', 'danger');
                 });
         }
-        e.preventDefault();
     });
 
 function displayMessage(message, level) {
