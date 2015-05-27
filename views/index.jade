@@ -1,31 +1,30 @@
 extends layout
 block content
-		.container
-			.row
-				.col-md-6
-					p
-					h1.text-center fileFU
-			.row
-				.col-md-6
-					p.text-center fileFU is a simple file server brought to you by Dragonegger2.
-			#success
-			#failure
-			form(method='post', action='/api/upload', enctype='multipart/form-data', style='padding-top:10')
-				.row.text-center
-					.col-md-6
-						.input-group
-							span.input-group-btn
-								span.btn.btn-primary.btn-file
-									| Browse...
-									input(type='file', multiple='', name='image')
-							input.form-control(type='text', readonly='')
-				.row.text-center(style='padding-top:10px;')
-					.col-md-6
-						button.btn.btn-primary(type='submit') Upload
-			.row
-				#download.col-md-6
-					table.table
-						thead
-							th File Name
-							th Download
-						tbody
+        .container
+            .row
+                .col-md-6
+                    p
+                    h1.text-center fileFU
+            .row
+                .col-md-6
+                    p.text-center fileFU is a simple file server brought to you by Dragonegger2.
+            #message
+            form(name='uploadFile' method='post', action='/api/upload', enctype='multipart/form-data', style='padding-top:10')
+                .row.text-center
+                    .col-md-6
+                        .input-group
+                            span.input-group-btn
+                                span.btn.btn-primary.btn-file
+                                    | Browse...
+                                    input(type='file', multiple='', name='image')
+                            input.form-control(type='text', readonly='')
+                .row.text-center(style='padding-top:10px;')
+                    .col-md-6
+                        button.btn.btn-primary(type='submit') Upload
+            .row
+                #download.col-md-6
+                    table.table
+                        thead
+                            th File Name
+                            th Download
+                        tbody

@@ -1,4 +1,3 @@
-// document ready call itself
 $(document).ready(function() {
     populateTable(); // populateTable function
 });
@@ -44,30 +43,35 @@ function populateTable() {
 
 $("form")
     .submit(function(e) {
-        $.ajax({
-                url: '/api/upload',
-                type: 'POST',
-                data: new FormData(this),
-                processData: false,
-                contentType: false
-            })
-            //returns a placeholder for div-id #success
-            //re-draws the table with new file
-            .done(function(serverResponse) {
-                $('#success').html('<div class="row remove fade in" id="success" role="alert"><div class="col-md-6 alert alert-success">Your file has been successfully uploaded.</div></div>');
-                window.setTimeout(fadeOut($('.remove'), 6000));
-                populateTable();
-            })
-            //returns a placeholder for div-id #failure
-            .fail(function(error) {
-                $('#error').html('<div class="row remove fade in" role="alert"><div class="col-md-6 alert alert-danger">An error occurred while uploading your file.</div></div>');
-                window.setTimeout(fadeOut($('.remove'), 6000));
-            });
+        var path = document.forms['uploadFile'];
+        console.log(JSON.stringify(path));
+        if (path === undefined) {
+            displayError("Please select a file.");
+        } else {
+
+            $.ajax({
+                    url: '/api/upload',
+                    type: 'POST',
+                    data: new FormData(this),
+                    processData: false,
+                    contentType: false
+                })
+                //returns a placeholder for div-id #success
+                //re-draws the table with new file
+                .success(function(serverResponse) {
+                    displayMessage('Your file has been successfully uploaded.', 'success');
+                    populateTable();
+                })
+                //returns a placeholder for div-id #failure
+                .fail(function(error) {
+                    displayMessage('An error occurred while uploading your file.', 'danger');
+                });
+        }
         e.preventDefault();
     });
 
-function fadeOut(objectToFadeOut) {
-    $(objectToFadeOut).fadeTo(500, 0).slideUp(500, function() {
-        $(this).remove();
-    })
+function displayMessage(message, level) {
+    $('#message')
+        .html('<div class="row remove fade in" role="alert"><div class="col-md-6 alert alert-'+level+'">' + message + '</div></div>')
+        .fadeOut(6000);
 }
